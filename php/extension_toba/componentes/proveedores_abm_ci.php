@@ -34,7 +34,8 @@ class proveedores_abm_ci extends abm_ci
                                
                 $form->set_datos($datos);
                 //genero la imagen codigo de barras
-                $filepath='C:\proyectos\toba_2.6.3\proyectos\proveedores\www\img\imagen'.$datos['id_prov'].'.jpg';
+                $filepath="/home/andrea/toba_2.7.13/proyectos/proveedores/www/img/imagen".$datos['id_prov'].'.jpg';
+                //$filepath='C:\proyectos\toba_2.6.3\proyectos\proveedores\www\img\imagen'.$datos['id_prov'].'.jpg';
                 $text=$datos['codigo_barra'];//'01234567898888888888';
             //barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
                 barcode( $filepath, $text,'30','horizontal','code128',true,1);       
@@ -71,15 +72,15 @@ class proveedores_abm_ci extends abm_ci
             $datos2['id_prov']=$prov['id_prov'];
             if (isset($datos['const_insc_afip'])) {
                             $nombre_ca="const_insc_afip".$prov['id_prov'].".pdf";
-                            $destino_ca="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_ca;
-                            //$destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_ca;
+                           // $destino_ca="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_ca;
+                            $destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_ca;
                             if(move_uploaded_file($datos['const_insc_afip']['tmp_name'], $destino_ca)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                                 $datos2['const_insc_afip']=strval($nombre_ca);}
             }
             if (isset($datos['const_insc_sipro'])) {
                             $nombre_sip="const_insc_sipro".$prov['id_prov'].".pdf";
-                            $destino_sip="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_sip;
-                            //$destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
+                            //$destino_sip="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_sip;
+                            $destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
                             if(move_uploaded_file($datos['const_insc_sipro']['tmp_name'], $destino_sip)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                                 $datos2['const_insc_sipro']=strval($nombre_sip);}
             }
@@ -87,8 +88,7 @@ class proveedores_abm_ci extends abm_ci
             $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->sincronizar();           
             //sino esta cargada la carga
             if(($this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->esta_cargada())!=true){
-               //$auxi['id_prov']=$prov['id_prov'];
-               $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->cargar($carga); //auxi
+               $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->cargar($carga); 
             }
         }
 
@@ -105,16 +105,16 @@ class proveedores_abm_ci extends abm_ci
                 $datos2['id_prov']=$id;
                 if (isset($datos['const_insc_afip'])) {
                     $nombre_ca="const_insc_afip".$id.".pdf";
-                    $destino_ca="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_ca;
-                    //$destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_ca;
+                    //$destino_ca="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_ca;
+                    $destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_ca;
                     if(move_uploaded_file($datos['const_insc_afip']['tmp_name'], $destino_ca)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_insc_afip']=strval($nombre_ca);
                     }
                 }
                 if (isset($datos['const_insc_sipro'])) {
                     $nombre_sip="const_insc_sipro".$id.".pdf";
-                    $destino_sip="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_sip;
-                    //$destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
+                    //$destino_sip="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_sip;
+                    $destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
                     if(move_uploaded_file($datos['const_insc_sipro']['tmp_name'], $destino_sip)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_insc_sipro']=strval($nombre_sip);}
                 }
