@@ -14,7 +14,8 @@ class dt_proveedor extends toba_datos_tabla
                 . " left outer join rubro r on (r.id_rubro=rp.id_rubro)"
                 . " group by p.id_prov,razon_social,cuit1,cuit,cuit2,correo_principal,correo_secundario,fecha_inscripcion,telefono,inscripto_sipro"
                 . ")sub"
-                . $where;
+                . $where
+                ." order by id_prov";
         return toba::db('proveedores')->consultar($sql);
     }
 
