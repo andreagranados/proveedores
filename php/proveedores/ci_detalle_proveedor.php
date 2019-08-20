@@ -136,8 +136,8 @@ class ci_detalle_proveedor extends  proveedores_abm_ci
                     $pdf->reopenObject($id); //definimos el path a la imagen de logo de la organizacion 
                     //agregamos al documento la imagen y definimos su posición a través de las coordenadas (x,y) y el ancho y el alto.
                     $imagen = toba::proyecto()->get_path().'/www/img/logo.jpg';//la imagen logo_unco.jpg ver xq no anda
-                    $imagen2 = toba::proyecto()->get_path().'/www/img/imagen'.$prov['id_prov'].'.jpg';
-                    
+                    //$imagen2 = toba::proyecto()->get_path().'/www/img/imagen'.$prov['id_prov'].'.jpg';
+                    $imagen2 = toba::proyecto()->get_path().'/www/codigo_barras/imagen'.$prov['id_prov'].'.jpg';
                     $pdf->addJpegFromFile($imagen, 70, 730, 70, 66); 
                     $pdf->addJpegFromFile($imagen2, 225, 70, 150, 43);//x, y 209,60
                     $pdf->closeObject(); 
