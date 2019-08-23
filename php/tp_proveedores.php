@@ -8,15 +8,15 @@
 	function barra_superior()
 	{ 
 		echo "<div align=center>";
-		echo toba_recurso::imagen_proyecto('logof.png', true,null,'100px');
+                echo toba_recurso::imagen_proyecto('logo_unco.jpg', true,null,'100px');
+		//echo toba_recurso::imagen_proyecto('logof.png', true,null,'100px');
                 echo "<br>";
 		echo "<div style='font-size:15px;font-family:Verdana,Helvetica;color:#660033;font-weight:bold;'>";
-		echo "Proveedores";
+                echo "Departamento de Compras y Contrataciones";
+                echo "<br>";
+		echo "Padr&oacute;n de Proveedores";
 		echo "</div>";
 		echo "<div>versi&oacute;n ".toba::proyecto()->get_version();
-               // echo " <a href='ManualModuloDesignaciones.pdf'>Descargar Manual Ayuda</a>" ."</div>";
-		//echo " <a href='Disposicion005-15SH.pdf'>Disposici�n</a>" ."</div>";
-                
 		echo "</div>";
 		echo "</div>\n\n";    
 		

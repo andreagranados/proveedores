@@ -64,11 +64,10 @@ class proveedores_abm_ci extends abm_ci
             $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->set($datos);
             $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->sincronizar();
             toba::notificacion()->agregar('El registro ha sido ingresado correctamente', 'info');
-           // if (!$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->esta_cargada()) {
-                 $prov=$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->get();
-                 $carga=array('id_prov'=>$prov['id_prov']);
-                 $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->cargar($carga);
-            // }
+            $prov=$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->get();
+            $carga=array('id_prov'=>$prov['id_prov']);
+            $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->cargar($carga);
+          
               //adjuntos
             $datos2['id_prov']=$prov['id_prov'];
             if (isset($datos['const_insc_afip'])) {
