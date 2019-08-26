@@ -211,7 +211,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'1779', --pantalla
 	'pant_domicilio', --identificador
 	'3', --orden
-	'Domicilio', --etiqueta
+	'Datos de Contacto', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen

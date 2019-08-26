@@ -226,12 +226,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'proveedores', --objeto_proyecto
 	'4352', --objeto
-	'2356', --col_id
-	'telefono', --columna
+	'2361', --col_id
+	'nombre_fantasia', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
-	NULL, --largo
+	'150', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa

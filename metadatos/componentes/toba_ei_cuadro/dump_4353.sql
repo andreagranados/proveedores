@@ -166,7 +166,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'4353', --objeto_cuadro
 	'4548', --objeto_cuadro_col
 	'cuit', --clave
-	'3', --orden
+	'4', --orden
 	'Cuit', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'0', --estilo
@@ -197,7 +197,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'4353', --objeto_cuadro
 	'4549', --objeto_cuadro_col
 	'correo_principal', --clave
-	'4', --orden
+	'5', --orden
 	'Correo Principal', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -227,8 +227,8 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'proveedores', --objeto_cuadro_proyecto
 	'4353', --objeto_cuadro
 	'4551', --objeto_cuadro_col
-	'fecha_incripcion', --clave
-	'5', --orden
+	'fecha_inscripcion', --clave
+	'6', --orden
 	'Fecha Inscripción', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -259,7 +259,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'4353', --objeto_cuadro
 	'4552', --objeto_cuadro_col
 	'inscripto_sipro', --clave
-	'6', --orden
+	'7', --orden
 	'Inscripto SIPRO', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -321,7 +321,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'4353', --objeto_cuadro
 	'4558', --objeto_cuadro_col
 	'telefono', --clave
-	'7', --orden
+	'8', --orden
 	'Teléfono', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -352,8 +352,39 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'4353', --objeto_cuadro
 	'4559', --objeto_cuadro_col
 	'rubros', --clave
-	'8', --orden
+	'9', --orden
 	'Rubros', --titulo
+	'ei-cuadro-col-tit', --estilo_titulo
+	'4', --estilo
+	NULL, --ancho
+	'1', --formateo
+	NULL, --vinculo_indice
+	NULL, --no_ordenar
+	NULL, --mostrar_xls
+	NULL, --mostrar_pdf
+	NULL, --pdf_propiedades
+	NULL, --desabilitado
+	NULL, --total
+	NULL, --total_cc
+	NULL, --usar_vinculo
+	NULL, --vinculo_carpeta
+	NULL, --vinculo_item
+	NULL, --vinculo_popup
+	NULL, --vinculo_popup_param
+	NULL, --vinculo_target
+	NULL, --vinculo_celda
+	NULL, --vinculo_servicio
+	'0', --permitir_html
+	NULL, --grupo
+	NULL  --evento_asociado
+);
+INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro, objeto_cuadro_col, clave, orden, titulo, estilo_titulo, estilo, ancho, formateo, vinculo_indice, no_ordenar, mostrar_xls, mostrar_pdf, pdf_propiedades, desabilitado, total, total_cc, usar_vinculo, vinculo_carpeta, vinculo_item, vinculo_popup, vinculo_popup_param, vinculo_target, vinculo_celda, vinculo_servicio, permitir_html, grupo, evento_asociado) VALUES (
+	'proveedores', --objeto_cuadro_proyecto
+	'4353', --objeto_cuadro
+	'4560', --objeto_cuadro_col
+	'nombre_fantasia', --clave
+	'3', --orden
+	'Nombre Fantasía', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
 	NULL, --ancho

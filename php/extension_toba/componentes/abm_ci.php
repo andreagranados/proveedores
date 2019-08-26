@@ -10,7 +10,8 @@ class abm_ci extends toba_ci {
 
     function conf__cuadro(toba_ei_cuadro $cuadro) {
         if (!is_null($this->s__where)) {
-            $datos = $this->dep('datos')->tabla($this->nombre_tabla)->get_listado($this->s__where);
+            //$datos = $this->dep('datos')->tabla($this->nombre_tabla)->get_listado($this->s__where);
+            $datos = $this->dep('datos')->tabla($this->nombre_tabla)->get_listado($this->s__datos_filtro);
         } else {
             $datos = $this->dep('datos')->tabla($this->nombre_tabla)->get_listado();
         }
@@ -50,7 +51,8 @@ class abm_ci extends toba_ci {
      * Atrapa la interacci�n del usuario con el bot�n asociado
      */
     function evt__filtros__cancelar() {
-        
+        $this->s__datos_filtro=null;
+        $this->s__where=null;
     }
 
     function evt__agregar($datos) {

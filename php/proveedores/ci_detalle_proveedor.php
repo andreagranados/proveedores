@@ -64,6 +64,7 @@ class ci_detalle_proveedor extends  proveedores_abm_ci
                 $datos['id_prov']=$prov['id_prov'];
                 $this->controlador()->dep('datos')->tabla('domicilio')->set($datos);
                 $this->controlador()->dep('datos')->tabla('domicilio')->sincronizar();
+                toba::notificacion()->agregar('Los datos se han guardado correctamente', 'info');
             }
             if (!$this->controlador()->dep('datos')->tabla('domicilio')->esta_cargada()) {//no esta cargada entonces se da de alta la primera vez
                  $domi=$this->controlador()->dep('datos')->tabla('domicilio')->get();

@@ -29,6 +29,11 @@ class proveedores_abm_ci extends abm_ci
                         $datos['const_insc_sipro']=$pa['const_insc_sipro'];
                         $datos['imagen_vista_previa_cis'] = "<a target='_blank' href='{$nomb_sipro}' >Constancia SIPRO</a>";
                     }
+                    if(isset($pa['const_cbu'])){
+                        $nomb_cbu='/proveedores/1.0/adjuntos/'.$pa['const_cbu'];//en windows
+                        $datos['const_cbu']=$pa['const_cbu'];
+                        $datos['imagen_vista_previa_cbu'] = "<a target='_blank' href='{$nomb_cbu}' >Constancia CBU</a>";
+                    }
                 }
                 //fin adjuntos
                                
@@ -84,6 +89,13 @@ class proveedores_abm_ci extends abm_ci
                             if(move_uploaded_file($datos['const_insc_sipro']['tmp_name'], $destino_sip)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                                 $datos2['const_insc_sipro']=strval($nombre_sip);}
             }
+            if (isset($datos['const_cbu'])) {
+                            $nombre_cbu="const_cbu".$prov['id_prov'].".pdf";
+                            //$destino_cbu="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_cbu;
+                            $destino_cbu="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_cbu;
+                            if(move_uploaded_file($datos['const_cbu']['tmp_name'], $destino_cbu)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
+                                $datos2['const_cbu']=strval($nombre_cbu);}
+            }
             $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->set($datos2);
             $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->sincronizar();           
             //sino esta cargada la carga
@@ -117,6 +129,13 @@ class proveedores_abm_ci extends abm_ci
                     $destino_sip="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
                     if(move_uploaded_file($datos['const_insc_sipro']['tmp_name'], $destino_sip)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_insc_sipro']=strval($nombre_sip);}
+                }
+                if (isset($datos['const_cbu'])) {
+                    $nombre_cbu="const_cbu".$id.".pdf";
+                    //$destino_cbu="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_cbu;
+                    $destino_cbu="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_cbu;
+                    if(move_uploaded_file($datos['const_cbu']['tmp_name'], $destino_cbu)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
+                        $datos2['const_cbu']=strval($nombre_cbu);}
                 }
                 //sino esta cargada la inserta y si esta cargada la modifica
                 $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->set($datos2);

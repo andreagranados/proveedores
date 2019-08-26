@@ -5,7 +5,7 @@
 INSERT INTO apex_usuario_grupo_acc (proyecto, usuario_grupo_acc, nombre, nivel_acceso, descripcion, vencimiento, dias, hora_entrada, hora_salida, listar, permite_edicion, menu_usuario) VALUES (
 	'proveedores', --proyecto
 	'finanzas', --usuario_grupo_acc
-	'finanzas', --nombre
+	'Finanzas', --nombre
 	NULL, --nivel_acceso
 	'Dirección de Finanzas', --descripcion
 	NULL, --vencimiento
