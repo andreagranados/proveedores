@@ -68,23 +68,24 @@ class dt_proveedor extends toba_datos_tabla
             }
          }    
          //si buscar por los dos rubros al mismo tiempo
-        if (isset($filtro['rubros2']['valor'])&& isset($filtro['rubros3']['valor'])) {
-             switch ($filtro['rubros2']['condicion']) {
-                    case 'es_distinto_de':$where.=" and ".$filtro['rubros2']['valor']. " not in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)" ;break;
-                    case 'es_igual_a':$where.=" and ".$filtro['rubros2']['valor']." in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)";break;
+        if (isset($filtro['rubros2']['valor']) && isset($filtro['rubros3']['valor'])) {
+            switch ($filtro['rubros2']['condicion']) {
+                    case 'es_distinto_de':$where.=" and (".$filtro['rubros2']['valor']. " not in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)" ;break;
+                    case 'es_igual_a':$where.=" and (".$filtro['rubros2']['valor']." in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov) ";break;
                  }
             switch ($filtro['rubros3']['condicion']) {
-                    case 'es_distinto_de':$where.=" and ".$filtro['rubros3']['valor']. " not in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)" ;break;
-                    case 'es_igual_a':$where.=" and ".$filtro['rubros3']['valor']." in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)";break;
+                    case 'es_distinto_de':$where.=" or ".$filtro['rubros3']['valor']. " not in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov))" ;break;
+                    case 'es_igual_a':$where.=" or ".$filtro['rubros3']['valor']." in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov))";break;
                  }
-        } 
-        if (isset($filtro['rubros2']['valor'])) {
+        } else{
+            if (isset($filtro['rubros2']['valor'])) {
                  switch ($filtro['rubros2']['condicion']) {
                     case 'es_distinto_de':$where.=" and ".$filtro['rubros2']['valor']. " not in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)" ;break;
                     case 'es_igual_a':$where.=" and ".$filtro['rubros2']['valor']." in( select a.id_rubro from rubro_proveedor a where a.id_prov=sub.id_prov)";break;
                  }
              }
-
+        }
+      
         $sql="select * from (select p.id_prov,razon_social,nombre_fantasia,cuit1||'-'||cuit||'-'||cuit2 as cuit, correo_principal,correo_secundario,fecha_inscripcion,coalesce(telefono,'')||' / '||coalesce(celular,'')  telefono,case when inscripto_sipro then 'SI' else 'NO' end as inscripto_sipro,string_agg(r.nombre,' /') as rubros"
                 . " from proveedor p"
                 . " left outer join rubro_proveedor rp on (rp.id_prov=p.id_prov)"

@@ -425,7 +425,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'opciones', --tipo
 	'rubros2', --nombre
 	'rubros2', --expresion
-	'Rubro', --etiqueta
+	'Rubro1', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
 	'0', --inicial
@@ -542,7 +542,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'rubros3', --nombre
 	'rubros3', --expresion
 	'Rubro2', --etiqueta
-	'Para buscar por un segundo rubro al mismo tiempo', --descripcion
+	'Para buscar por un segundo rubro al mismo tiempo (Rubro1 ó Rubro2)', --descripcion
 	'0', --obligatorio
 	'0', --inicial
 	'8', --orden
