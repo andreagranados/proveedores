@@ -37,7 +37,7 @@
 		<td align="right" valign="center">
 			
 		</td>
-		<td align="center" colspan=""><?php echo toba_recurso::imagen_proyecto("logo_unco2.png",true)?></td>
+		<td align="center" colspan=""><?php echo toba_recurso::imagen_proyecto("LOGOUNC-Chico.png",true)?></td>
 		<td></td>
 	</tr>
 	<tr>
