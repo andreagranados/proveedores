@@ -29,12 +29,10 @@ class ci_detalle_proveedor extends  proveedores_abm_ci
          }
         function evt__form_rubros__guardar($datos)
 	{
-            //print_r($datos);
             $pro=$this->controlador()->dep('datos')->tabla('proveedor')->get();
             foreach ($datos as $clave => $elem){
                  $datos[$clave]['id_prov']=$pro['id_prov'];    
-   
-            }    
+            }  
             $this->controlador()->dep('datos')->tabla('rubro_proveedor')->procesar_filas($datos);
             $this->controlador()->dep('datos')->tabla('rubro_proveedor')->sincronizar();
 	}
