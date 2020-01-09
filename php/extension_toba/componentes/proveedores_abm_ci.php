@@ -105,6 +105,7 @@ class proveedores_abm_ci extends abm_ci
         }
 
         function evt__formulario__modificacion($datos) { 
+            print_r($datos);
             if ($this->controlador()->dep('datos')->tabla($this->nombre_tabla)->esta_cargada()) {
                 $prov=$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->get();
                 $id=$prov['id_prov'];
@@ -115,13 +116,21 @@ class proveedores_abm_ci extends abm_ci
                 $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->sincronizar();
                 //modificacion de los adjuntos
                 $datos2['id_prov']=$id;
-                if (isset($datos['const_insc_afip'])) {
+                if (isset($datos['const_insc_afip'])) {//eligio un archivo
                     $nombre_ca="const_insc_afip".$id.".pdf";
                     //$destino_ca="C:/proyectos/toba_2.6.3/proyectos/proveedores/www/adjuntos/".$nombre_ca;
                     $destino_ca="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_ca;
                     if(move_uploaded_file($datos['const_insc_afip']['tmp_name'], $destino_ca)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_insc_afip']=strval($nombre_ca);
                     }
+                }else{
+                     if ($datos['eliminar_afip']==1) {
+                         $datos2['const_insc_afip']=null;
+                         $nombre_ca="const_insc_afip".$id.".pdf";
+                         if (file_exists($nombre_ca)) {
+                            unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_ca);//borra el archivo
+                         }
+                     }
                 }
                 if (isset($datos['const_insc_sipro'])) {
                     $nombre_sip="const_insc_sipro".$id.".pdf";
@@ -129,6 +138,14 @@ class proveedores_abm_ci extends abm_ci
                     $destino_sip="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_sip;
                     if(move_uploaded_file($datos['const_insc_sipro']['tmp_name'], $destino_sip)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_insc_sipro']=strval($nombre_sip);}
+                }else{
+                     if ($datos['eliminar_sipro']==1) {
+                         $datos2['const_insc_sipro']=null;
+                         $nombre_sip="const_insc_sipro".$id.".pdf";
+                         if (file_exists($nombre_sip)) {
+                            unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_sip);//borra el archivo
+                         }
+                     }
                 }
                 if (isset($datos['const_cbu'])) {
                     $nombre_cbu="const_cbu".$id.".pdf";
@@ -136,6 +153,14 @@ class proveedores_abm_ci extends abm_ci
                     $destino_cbu="/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/".$nombre_cbu;
                     if(move_uploaded_file($datos['const_cbu']['tmp_name'], $destino_cbu)){//mueve un archivo a una nueva direccion, retorna true cuando lo hace y falso en caso de que no
                         $datos2['const_cbu']=strval($nombre_cbu);}
+                }else{
+                     if ($datos['eliminar_cbu']==1) {
+                         $datos2['const_cbu']=null;
+                         $nombre_cbu="const_cbu".$id.".pdf";
+                         if (file_exists($nombre_cbu)) {
+                            unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_cbu);//borra el archivo
+                         }
+                     }
                 }
                 //sino esta cargada la inserta y si esta cargada la modifica
                 $this->controlador()->dep('datos')->tabla('proveedor_adjuntos')->set($datos2);
@@ -150,10 +175,28 @@ class proveedores_abm_ci extends abm_ci
         }
 
         function evt__formulario__baja() {
-            $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->eliminar_todo();
-            toba::notificacion()->agregar('El registro se ha eliminado correctamente', 'info');
-            $this->controlador()->dep('datos')->resetear();
-            $this->controlador()->set_pantalla('pant_inicial');
+             if ($this->controlador()->dep('datos')->tabla($this->nombre_tabla)->esta_cargada()) {
+                $prov=$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->get();
+                $id=$prov['id_prov'];
+                //tambien borra los archivos si es que existen asi no queda basura
+                $nombre_sip="const_insc_sipro".$id.".pdf";
+                $nombre_ca="const_insc_afip".$id.".pdf";
+                $nombre_cbu="const_cbu".$id.".pdf";
+                if (file_exists($nombre_sip)) {
+                   unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_sip);//borra el archivo
+                }
+                if (file_exists($nombre_ca)) {
+                    unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_ca);//borra el archivo
+                 }
+                if (file_exists($nombre_cbu)) {
+                    unlink('/home/andrea/toba_2.7.13/proyectos/proveedores/www/adjuntos/'.$nombre_cbu);//borra el archivo    
+                 }
+                $this->controlador()->dep('datos')->tabla($this->nombre_tabla)->eliminar_todo();
+                toba::notificacion()->agregar('El registro se ha eliminado correctamente', 'info');
+                $this->controlador()->dep('datos')->resetear();
+                $this->controlador()->set_pantalla('pant_inicial');
+             }
+            
         }
     
   
