@@ -105,7 +105,6 @@ class proveedores_abm_ci extends abm_ci
         }
 
         function evt__formulario__modificacion($datos) { 
-            print_r($datos);
             if ($this->controlador()->dep('datos')->tabla($this->nombre_tabla)->esta_cargada()) {
                 $prov=$this->controlador()->dep('datos')->tabla($this->nombre_tabla)->get();
                 $id=$prov['id_prov'];
